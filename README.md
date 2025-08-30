@@ -1,7 +1,6 @@
 # Robot Framework Selenium Automation with Python
 
-This project contains automated tests for the OrangeHRM login functionality using Robot Framework with SeleniumLibrary, implemented in Python.
-
+A scalable test automation suite built with Robot Framework, SeleniumLibrary, and Python for web UI testing. This project contains environment-based configuration and currently automates login functionality for a demo HR Management system, with a modular structure designed for easy expansion to other modules like recruitment, employee management etc.
 ## Project Structure
 Python_RobotFramework/ \
 ├── PageObjects \
@@ -34,7 +33,7 @@ Python_RobotFramework/ \
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/hibaSikander123/robotframework-test-suite.git>
    cd Python_RobotFramework
 
 2. **Create and activate a virtual environment**

@@ -100,9 +100,8 @@ All sensitive data is stored in the .env file which is excluded from version con
 * **Notes:**
   * The default credentials work with the OrangeHRM demo site (mentioned in login page)
   * The test suite requires candidate personal details (first name, middle name, last name, and email address) which can be customized according to testing data 
-  * Place the desired candidate resume file (docx, .doc, .odt, .pdf, .rtf or .txt format up to 1MB) in the Resources directory 
-  * Specify the resume file's complete path in the RESUME_FILE_PATH environment variable 
-  * Include the exact name of resume file with extension in the RESUME_FILE_NAME variable
+  * Specify the resume file's (located under Resources directory) complete path in the RESUME_FILE_PATH environment variable 
+  * Include the exact name of resume file with extension(Resume.pdf) in the RESUME_FILE_NAME variable
   * Select appropriate vacancy titles from the available dropdown options in the recruitment page of the website
   * Ensure the VACANCY_TITLE environment variable matches exactly with the desired vacancy option displayed in the application interface
 

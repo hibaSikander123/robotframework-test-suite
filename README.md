@@ -1,19 +1,23 @@
 # Robot Framework Selenium Automation with Python
 
-A scalable test automation suite built with Robot Framework, SeleniumLibrary, and Python for web UI testing. This project contains environment-based configuration and currently automates login functionality for a demo HR Management system, with a modular structure designed for easy expansion to other modules like recruitment, employee management etc.
+A comprehensive test automation suite built with Robot Framework, SeleniumLibrary, and Python for web UI testing. This project implements environment-based configuration and currently automates both login functionality and recruitment module operations (add, search, delete candidates) for a demo HR Management system. The modular structure is designed for easy expansion to additional modules.
+
 ## Project Structure
+
 Python_RobotFramework/ \
 ├── PageObjects \
 │ └── Locators.py \
 ├── Resources/     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Contains Robot Framework keyword files \
 │ └── LoginKeywords.robot \
+│ └── RecruitmentKeywords.robot \
+│ └── Resume.pdf \
 ├── TestCases/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Contains test case files \
 │ └── LoginTest.robot \
+│ └── RecruitmentTest.robot \
 ├── .env &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Environment variables \
 ├── EnvHelper.py &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Python helper to load environment variables \
-├── .gitignore  \
-└── README.md 
-
+├── .gitignore &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
+└── README.md
 
 ## Technology Stack
 
@@ -29,12 +33,33 @@ Python_RobotFramework/ \
 - pip (Python package manager)
 - Chrome browser (or update the browser in test cases)
 
+## Implemented Test Cases
+* ### Login Module
+  * Successful login with valid credentials 
+  * Verification of login success
+* ### Recruitment Module
+  * Navigation to recruitment section 
+  * Adding new candidates with resume upload 
+  * Searching for candidates by various criteria 
+  * Deleting candidates with confirmation
+
+## Security Implementation
+This project uses environment variables to protect sensitive information:
+
+* Credentials (username/password)
+* Personal data (candidate information)
+* File paths and personal documents 
+* Application-specific configurations
+
+All sensitive data is stored in the .env file which is excluded from version control via .gitignore.
+
+
 ## Setup Instructions
 
 1. **Clone the repository**
    ```bash
    git clone <https://github.com/hibaSikander123/robotframework-test-suite.git>
-   cd Python_RobotFramework
+   cd robotframework-test-suite
 
 2. **Create and activate a virtual environment**
    ```bash
@@ -57,18 +82,44 @@ Python_RobotFramework/ \
     selenium==4.9.1
     python-dotenv==1.0.0
 4. **Configure Environment Variables**
-Create a .env file in the root directory:
+
+    Create a .env file in the root directory with the following variables:
    ```bash
-   OHRM_USERNAME=EnterUsername
-   OHRM_PASSWORD=EnterYourPassword
+   BROWSER=enterBrowserName
+   URL=https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+   OHRM_USERNAME=enterUsername
+   OHRM_PASSWORD=enterPassword
+   FIRST_NAME=enterFirstName
+   MIDDLE_NAME=enterMiddleName
+   LAST_NAME=enterLastName
+   EMAIL=enterEmail
+   RESUME_FILE_PATH=Resources/enterPdfFileNameWithExtension  # Relative path to your resume file
+   RESUME_FILE_NAME=enterPdfFileNameWithExtension           # Name of your resume file
+   VACANCY_TITLE=enterVacancyTitle
    
-* Note: Default credentials can be used as defined in OrangeHRM login page: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login 
+* **Notes:**
+  * The default credentials work with the OrangeHRM demo site (mentioned in login page)
+  * The test suite requires candidate personal details (first name, middle name, last name, and email address) which can be customized according to testing data 
+  * Specify the resume file's (located under Resources directory) complete path in the RESUME_FILE_PATH environment variable 
+  * Include the exact name of resume file with extension(Resume.pdf) in the RESUME_FILE_NAME variable
+  * Select appropriate vacancy titles from the available dropdown options in the recruitment page of the website
+  * Ensure the VACANCY_TITLE environment variable matches exactly with the desired vacancy option displayed in the application interface
 
 ## Running Tests
 Execute the following command from the project root:
-```bash
-   robot TestCases/LoginTest.robot
-```
+* To Run Login Tests
+    ```bash
+       robot TestCases/LoginTest.robot
+    ```
+* To Run Recruitments Tests
+    ```bash
+       robot TestCases/RecruitmentTest.robot
+    ```
+* To Run All Tests
+  ```bash
+     robot TestCases/*
+  ```
+
 ## Python Implementation Details
 This project uses Python for:
 
@@ -85,10 +136,9 @@ After test execution, you'll find these output files in the project root:
 
 ## Important Notes
 * The ``.env`` file is excluded from version control for security reasons 
-* Never commit actual credentials to version control 
-* Update the browser and URL in ``LoginTest.robot`` if needed
+* The resume file path in the ``.env`` should match your local file location 
+* Update the browser and URL in the .env file if needed
 
 ## Future Improvements
 
 - **Multi-Page Support**: Extend framework to support additional OrangeHRM modules
-- **Next Targeted Module - Recruitment Page**: Add test cases for candidate search, addition, and deletion

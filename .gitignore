@@ -16,3 +16,5 @@ __pycache__/
 # IDE files
 .idea/
 .vscode/
+
+/Resources/Resume_Paul.pdf

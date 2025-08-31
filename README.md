@@ -10,7 +10,7 @@ Python_RobotFramework/ \
 ├── Resources/     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Contains Robot Framework keyword files \
 │ └── LoginKeywords.robot \
 │ └── RecruitmentKeywords.robot \
-│ └── Resume.pdf &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # To be added manually by the user\
+│ └── Resume.pdf \
 ├── TestCases/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Contains test case files \
 │ └── LoginTest.robot \
 │ └── RecruitmentTest.robot \

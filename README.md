@@ -1,19 +1,22 @@
 # Robot Framework Selenium Automation with Python
 
-A comprehensive test automation suite built with Robot Framework, SeleniumLibrary, and Python for web UI testing. This project implements environment-based configuration and currently automates both login functionality and recruitment module operations (add, search, delete candidates) for a demo HR Management system. The modular structure is designed for easy expansion to additional modules.
+A comprehensive test automation suite built with Robot Framework, SeleniumLibrary, and Python for web UI testing. This project implements environment-based configuration and automates login functionality, recruitment module operations (add, search, delete candidates), and Buzz module operations (post sharing with image) for a demo HR Management system. The modular structure is designed for easy expansion to additional modules.
 
 ## Project Structure
 
-Python_RobotFramework/ \
+robotframework-test-suite/ \
 ├── PageObjects \
 │ └── Locators.py \
 ├── Resources/     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Contains Robot Framework keyword files \
+│ └── BuzzPostKeywords.robot \
+│ └── BuzzPostPic.jpg \
 │ └── LoginKeywords.robot \
 │ └── RecruitmentKeywords.robot \
 │ └── Resume.pdf \
 ├── TestCases/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Contains test case files \
-│ └── LoginTest.robot \
-│ └── RecruitmentTest.robot \
+│ └── 01_LoginTest.robot \
+│ └── 02_RecruitmentTest.robot \
+│ └── 03_BuzzPostTest.robot \
 ├── .env &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Environment variables \
 ├── EnvHelper.py &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Python helper to load environment variables \
 ├── .gitignore &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
@@ -38,10 +41,14 @@ Python_RobotFramework/ \
   * Successful login with valid credentials 
   * Verification of login success
 * ### Recruitment Module
-  * Navigation to recruitment section 
+  * Navigation to Recruitment section 
   * Adding new candidates with resume upload 
   * Searching for candidates by various criteria 
   * Deleting candidates with confirmation
+* ### Buzz Module
+  * Navigation to Buzz section 
+  * Creating and sharing post with image
+  * Verification of successful post sharing
 
 ## Security Implementation
 This project uses environment variables to protect sensitive information:
@@ -96,6 +103,8 @@ All sensitive data is stored in the .env file which is excluded from version con
    RESUME_FILE_PATH=Resources/enterPdfFileNameWithExtension  # Relative path to your resume file
    RESUME_FILE_NAME=enterPdfFileNameWithExtension           # Name of your resume file
    VACANCY_TITLE=enterVacancyTitle
+   PHOTO_FILE_PATH=Resources/enterImageFileNameWithExtension # Relative path to your Buzz post image
+   BUZZ_POST_TEXT=enterYourBuzzPostText                     # Text content for your Buzz post
    
 * **Notes:**
   * The default credentials work with the OrangeHRM demo site (mentioned in login page)
@@ -104,21 +113,28 @@ All sensitive data is stored in the .env file which is excluded from version con
   * Include the exact name of resume file with extension(Resume.pdf) in the RESUME_FILE_NAME variable
   * Select appropriate vacancy titles from the available dropdown options in the recruitment page of the website
   * Ensure the VACANCY_TITLE environment variable matches exactly with the desired vacancy option displayed in the application interface
+  * For Buzz posts, provide the path to an image file and the text content for your post
+
 
 ## Running Tests
 Execute the following command from the project root:
-* To Run Login Tests
-    ```bash
-       robot TestCases/LoginTest.robot
-    ```
-* To Run Recruitments Tests
-    ```bash
-       robot TestCases/RecruitmentTest.robot
-    ```
 * To Run All Tests
   ```bash
      robot TestCases/*
   ```
+* To Run Login Tests
+    ```bash
+       robot TestCases/01_LoginTest.robot
+    ```
+* To Run Recruitments Tests
+    ```bash
+       robot TestCases/02_RecruitmentTest.robot
+    ```
+* To Run Buzz Tests
+    ```bash
+       robot TestCases/03_BuzzTest.robot
+    ```
+
 
 ## Python Implementation Details
 This project uses Python for:
@@ -138,7 +154,3 @@ After test execution, you'll find these output files in the project root:
 * The ``.env`` file is excluded from version control for security reasons 
 * The resume file path in the ``.env`` should match your local file location 
 * Update the browser and URL in the .env file if needed
-
-## Future Improvements
-
-- **Multi-Page Support**: Extend framework to support additional OrangeHRM modules

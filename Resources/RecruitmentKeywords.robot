@@ -30,7 +30,6 @@ Fill New Candidate Form
    Select Vacancy from DropDown
    Input Text  ${txt_email}  ${email}
    Choose File  ${upload_fileInput}  ${resumeFilePath}
-   Click Element  ${btn_calendar}
    Click Element  ${checkbox_recruitement}
    Submit form
 

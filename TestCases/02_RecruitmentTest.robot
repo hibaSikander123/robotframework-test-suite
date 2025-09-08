@@ -7,7 +7,7 @@ Variables  ../EnvHelper.py
 Test to Go to "Recruitment" side tab
    Set Selenium Implicit Wait    5 seconds
    Go to side menu option "Recruitment"
-   Element Text Should Be  ${txtTitle_Recruitement}  Recruitment  Recruitment tag hasn't been clicked!
+   Element Text Should Be  ${txt_pageTitle}  Recruitment  Recruitment tag hasn't been clicked!
 
 Test to Add New Candidate
    Set Selenium Implicit Wait    5 seconds
